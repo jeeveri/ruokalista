@@ -1,65 +1,61 @@
-import { useEffect, useState } from 'react'
-import { storage } from './storage'
-import type { Perheenjasen } from './types'
+import { useState } from 'react'
+import type { Perheenjasen, Resepti } from './types'
+import { useTallennettu } from './useTallennettu'
 import { Perhe } from './Perhe'
+import { Reseptit } from './Reseptit'
 import './App.css'
 
-const OLETUS: Perheenjasen[] = [
+const OLETUS_JASENET: Perheenjasen[] = [
   { id: 'jesperi', nimi: 'Jesperi', eiSaa: [], inhokit: [], lempiruoat: '' },
   { id: 'terhi', nimi: 'Terhi', eiSaa: [], inhokit: [], lempiruoat: '' },
   { id: 'eemeli', nimi: 'Eemeli', eiSaa: [], inhokit: [], lempiruoat: '' },
 ]
 
-type Nakyma = 'viikko' | 'perhe'
+type Nakyma = 'viikko' | 'reseptit' | 'perhe'
+
+const VALILEHDET: { id: Nakyma; nimi: string }[] = [
+  { id: 'viikko', nimi: 'Viikko' },
+  { id: 'reseptit', nimi: 'Reseptit' },
+  { id: 'perhe', nimi: 'Perhe' },
+]
 
 function App() {
   const [nakyma, setNakyma] = useState<Nakyma>('viikko')
-  const [jasenet, setJasenet] = useState<Perheenjasen[]>(OLETUS)
-  const [ladattu, setLadattu] = useState(false)
-
-  useEffect(() => {
-    storage.get<Perheenjasen[]>('perheenjasenet', OLETUS).then((j) => {
-      setJasenet(j)
-      setLadattu(true)
-    })
-  }, [])
-
-  function muuta(uudet: Perheenjasen[]) {
-    setJasenet(uudet)
-    if (ladattu) storage.set('perheenjasenet', uudet)
-  }
+  const [jasenet, setJasenet] = useTallennettu<Perheenjasen[]>('perheenjasenet', OLETUS_JASENET)
+  const [reseptit, setReseptit] = useTallennettu<Resepti[]>('reseptit', [])
 
   return (
     <main className="sovellus">
       <h1>Ruokalista</h1>
 
       <nav className="valilehdet">
-        <button
-          type="button"
-          className={nakyma === 'viikko' ? 'aktiivinen' : ''}
-          onClick={() => setNakyma('viikko')}
-        >
-          Viikko
-        </button>
-        <button
-          type="button"
-          className={nakyma === 'perhe' ? 'aktiivinen' : ''}
-          onClick={() => setNakyma('perhe')}
-        >
-          Perhe
-        </button>
+        {VALILEHDET.map((v) => (
+          <button
+            key={v.id}
+            type="button"
+            className={nakyma === v.id ? 'aktiivinen' : ''}
+            onClick={() => setNakyma(v.id)}
+          >
+            {v.nimi}
+          </button>
+        ))}
       </nav>
 
       {nakyma === 'viikko' && (
         <section>
           <h2>Viikon ruokalista</h2>
           <p className="pieni">
-            Tulossa vaiheessa 4. Perheessä on {jasenet.length} jäsentä.
+            Tulossa vaiheessa 4. Reseptejä on {reseptit.length} ja perheessä {jasenet.length}{' '}
+            jäsentä.
           </p>
         </section>
       )}
 
-      {nakyma === 'perhe' && <Perhe jasenet={jasenet} onMuuta={muuta} />}
+      {nakyma === 'reseptit' && (
+        <Reseptit reseptit={reseptit} jasenet={jasenet} onMuuta={setReseptit} />
+      )}
+
+      {nakyma === 'perhe' && <Perhe jasenet={jasenet} onMuuta={setJasenet} />}
     </main>
   )
 }
