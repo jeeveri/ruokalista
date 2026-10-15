@@ -1,0 +1,10 @@
+.sovellus {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  font-family: system-ui, sans-serif;
+}
+.pieni {
+  color: #666;
+  font-size: 0.9rem;
+}
