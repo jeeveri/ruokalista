@@ -12,13 +12,27 @@ export interface Aine {
   yksikko: string
 }
 
+export interface Askel {
+  numero: number | null
+  teksti: string
+}
+
+// Yksi valmistuksen vaihe: sen aineslista ja askeleet
+export interface Vaihe {
+  aineet: string[]
+  askeleet: Askel[]
+}
+
 export interface Resepti {
-  id: string
+  id: string // tiedoston nimi ilman .md-päätettä
   nimi: string
   annokset: number
   kestoMin: number
-  aineet: Aine[]
-  tunnisteet: string[] // mitä reseptissä on, ks. tags.ts
-  ohje: string
   lahde: string
+  avainsanat: string[] // vapaat avainsanat (broileri, pata, arki)
+  sisaltaa: string[] // suodatustunnisteet tags.ts-listasta: mitä reseptissä on
+  sisaltaaPuuttuu: boolean // true, jos tiedostosta puuttuu sisältää-kenttä
+  aineet: Aine[]
+  valmistus: string // valmistus-osion raaka markdown
+  varoitukset: string[] // tiedoston tarkistuksessa löytyneet huomautukset
 }

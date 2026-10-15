@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import type { Perheenjasen, Resepti } from './types'
+import type { Perheenjasen } from './types'
 import { useTallennettu } from './useTallennettu'
 import { Perhe } from './Perhe'
 import { Reseptit } from './Reseptit'
+import { RESEPTIT } from './reseptiLataus'
 import './App.css'
 
 const OLETUS_JASENET: Perheenjasen[] = [
@@ -22,7 +23,6 @@ const VALILEHDET: { id: Nakyma; nimi: string }[] = [
 function App() {
   const [nakyma, setNakyma] = useState<Nakyma>('viikko')
   const [jasenet, setJasenet] = useTallennettu<Perheenjasen[]>('perheenjasenet', OLETUS_JASENET)
-  const [reseptit, setReseptit] = useTallennettu<Resepti[]>('reseptit', [])
 
   return (
     <main className="sovellus">
@@ -45,15 +45,13 @@ function App() {
         <section>
           <h2>Viikon ruokalista</h2>
           <p className="pieni">
-            Tulossa vaiheessa 4. Reseptejä on {reseptit.length} ja perheessä {jasenet.length}{' '}
+            Tulossa vaiheessa 4. Reseptejä on {RESEPTIT.length} ja perheessä {jasenet.length}{' '}
             jäsentä.
           </p>
         </section>
       )}
 
-      {nakyma === 'reseptit' && (
-        <Reseptit reseptit={reseptit} jasenet={jasenet} onMuuta={setReseptit} />
-      )}
+      {nakyma === 'reseptit' && <Reseptit reseptit={RESEPTIT} jasenet={jasenet} />}
 
       {nakyma === 'perhe' && <Perhe jasenet={jasenet} onMuuta={setJasenet} />}
     </main>

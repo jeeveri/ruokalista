@@ -188,3 +188,51 @@
   background: #fff;
   color: #2e7d5a;
 }
+.merkki.neutraali {
+  background: #eee;
+  color: #555;
+}
+
+.huomio {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  background: #fff3cd;
+  color: #5c4400;
+  font-size: 0.85rem;
+}
+.huomio ul {
+  margin: 0.3rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.vaihe {
+  margin: 1rem 0;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #ccc;
+}
+.tarvitset {
+  margin: 0 0 0.5rem;
+  padding: 0.5rem 0.8rem 0.5rem 1.6rem;
+  background: #f3f8f5;
+  border-left: 3px solid #2e7d5a;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.vihje {
+  color: #666;
+  font-size: 0.85rem;
+}
+.vihje.valinta {
+  display: block;
+  margin-top: 0.5rem;
+}
+.esikatselu {
+  white-space: pre-wrap;
+  background: #f6f6f6;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  overflow-x: auto;
+}

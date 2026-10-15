@@ -15,10 +15,10 @@ export function arvioi(resepti: Resepti, jasenet: Perheenjasen[]): Sopivuus {
   const inhokit: Osuma[] = []
 
   for (const j of jasenet) {
-    const kielletyt = resepti.tunnisteet.filter((t) => j.eiSaa.includes(t))
+    const kielletyt = resepti.sisaltaa.filter((t) => j.eiSaa.includes(t))
     if (kielletyt.length > 0) eiSovi.push({ nimi: j.nimi, tunnisteet: kielletyt })
 
-    const ei = resepti.tunnisteet.filter((t) => j.inhokit.includes(t))
+    const ei = resepti.sisaltaa.filter((t) => j.inhokit.includes(t))
     if (ei.length > 0) inhokit.push({ nimi: j.nimi, tunnisteet: ei })
   }
 
