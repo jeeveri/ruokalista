@@ -1,10 +1,107 @@
 .sovellus {
   max-width: 32rem;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1rem 3rem;
   font-family: system-ui, sans-serif;
 }
 .pieni {
   color: #666;
   font-size: 0.9rem;
+}
+
+.valilehdet {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.valilehdet button {
+  flex: 1;
+  padding: 0.7rem;
+  border: 1px solid #2e7d5a;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #2e7d5a;
+  font-size: 1rem;
+}
+.valilehdet button.aktiivinen {
+  background: #2e7d5a;
+  color: #fff;
+}
+
+.kortti {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.kortti summary {
+  cursor: pointer;
+}
+.yhteenveto {
+  color: #666;
+  font-size: 0.85rem;
+}
+.kortti h3 {
+  margin: 1rem 0 0.4rem;
+  font-size: 1rem;
+}
+
+.kentta {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+.kentta input,
+.kentta textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 0.4rem;
+  font: inherit;
+}
+
+.chipit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.chip {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #bbb;
+  border-radius: 999px;
+  background: #fff;
+  color: #222;
+  font-size: 0.9rem;
+}
+.chip.ei {
+  background: #c62828;
+  border-color: #c62828;
+  color: #fff;
+}
+.chip.inhokki {
+  background: #f9a825;
+  border-color: #f9a825;
+  color: #222;
+}
+
+.poista,
+.lisaa {
+  margin-top: 1rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+}
+.poista {
+  border: 1px solid #c62828;
+  background: #fff;
+  color: #c62828;
+}
+.lisaa {
+  width: 100%;
+  border: 1px dashed #2e7d5a;
+  background: #fff;
+  color: #2e7d5a;
 }

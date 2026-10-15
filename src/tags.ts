@@ -1,0 +1,20 @@
+// Yhteinen tunnistelista. Lisää uusia vapaasti, mutta älä nimeä käytössä olevia uudelleen.
+export const TAGIT: string[] = [
+  'maito',
+  'laktoosi',
+  'gluteeni',
+  'kananmuna',
+  'kala',
+  'äyriäiset',
+  'pähkinät',
+  'maapähkinä',
+  'soija',
+  'selleri',
+  'sinappi',
+  'seesami',
+  'sieni',
+  'sipuli',
+  'tulinen',
+  'liha',
+  'sianliha',
+]
